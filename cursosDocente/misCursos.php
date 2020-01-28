@@ -3,9 +3,7 @@ session_start();
 //curso 1
 
 //validacion session
-header("Cache-control: private");
-header("Cache-control: no-cache, must-revalidate");
-header("Pragma: no-cache");
+
 if(!isset($_SESSION['idUsuario'])) {
 header('Location: ../index.html');
 }
