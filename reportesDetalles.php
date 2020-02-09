@@ -183,18 +183,9 @@ $fecha_actual=date("d/m/Y");
                               echo '--';
                             }else{
                               while(@$rowNew11=$palabrasMiCofrel->fetch(PDO::FETCH_ASSOC)){
-                                @$hj+=1;
-                                  if($hj==1){
+                               
                                   echo $rowNew11['fecha'].'<br>';
-                                  }
-
-                                  if($hj==2){
-                                  echo $rowNew11['fecha'].'<br>';
-                                  }
-
-                                  if($hj==3){
-                                  echo $rowNew11['fecha'].'<br>';
-                                  }
+                                 
                               }
                             }
                            
@@ -213,17 +204,9 @@ $fecha_actual=date("d/m/Y");
                             }else{
                               while(@$rowNew11=$palabrasMiCofrel->fetch(PDO::FETCH_ASSOC)){
 
-                                 @$mn+=1;
-                                  if($mn==1){
+                               
                                   echo$rowNew11['hora'].'<br>';
-                                  }
-                                  if($mn==2){
-                                  echo$rowNew11['hora'].'<br>';
-                                  }
-
-                                   if($mn==3){
-                                  echo$rowNew11['hora'].'<br>';
-                                  }
+                                 
                               }
                             }
                            
