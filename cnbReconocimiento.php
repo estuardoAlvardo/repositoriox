@@ -2,9 +2,7 @@
 session_start();
 
 //validacion session
-header("Cache-control: private");
-header("Cache-control: no-cache, must-revalidate");
-header("Pragma: no-cache");
+
 if(!isset($_SESSION['idUsuario'])) {
 header('Location: ../../index.html');
 }
@@ -51,8 +49,43 @@ require("../../conection/conexion.php");
 
       $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
     }
+
+      if($_GET['gradoB']==7){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
+
+      if($_GET['gradoB']==8){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
+
+      if($_GET['gradoB']==9){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
+
+      if($_GET['gradoB']==10){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
       
-    // echo $urlCalificar; 
+    if($_GET['gradoB']==11){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
+      
+   // echo $urlCalificar; 
+
+        //eliminar boto para terminar cuestionario
+    if($consulta>=1){
+      $bntTerminarQuiz='display:block; margin-top:100px;';
+      $mostrarMensaje='display:none;';
+    }else{
+      $bntTerminarQuiz='display:none;';
+      $mostrarMensaje='display:block;';
+    }
+
 
  ?>
     
@@ -358,7 +391,7 @@ input#fort:checked ~ label  {
  @$noPregunta+=1;
  ?>
     
-<div class="card col-md-12" style="min-height: 250px;">
+<div class="card col-md-12" style="min-height: 250px; margin-bottom: 50px;">
 	 <div class="col-md-12" style="min-height: 20px; background-color: #27ae60; border-radius: 5px;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: white; text-align: center;"><?php echo "Indicador de logro: ".$row1['capacidad'] ?></div>
   <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: 15%; margin-left: 90%; "><?php echo @$noPregunta; ?></div>
 
@@ -373,19 +406,25 @@ input#fort:checked ~ label  {
        <div class="recodinggN" id="<?php echo 'on'.$row1['idItem']; ?>" title="Graba tú respuesta" style="cursor: pointer; padding-top:3px; padding-left: 5px; width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; background-color: #e67e22; margin-left: 40%;" onclick="quizRespuesta(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
       
       <div id="<?php echo 'off'.$row1['idItem']; ?>" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px; padding-left: 5px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; background-color: #F72626; margin-left: 40%; display: none" onclick="finVoz(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
-      <h4>Tú Grabación:</h4>
+      <h4>Redacta o graba tú respuesta:</h4>
       <div class="col-md-8 cajaDescripcion" style="color: white; background-color:#e67e22; border-radius: 5px; " >
-      <span  id="<?php echo 'span-preview'.$row1['idItem']; ?>"></span>
       </div>
-      <input type="text" name="<?php echo 'input'.$row1['idItem'] ?>" id='<?php echo 'input'.$row1['idItem']; ?>' value="" style="display: none;">
-      <a id="<?php echo 'limpiar'.$row1['idItem']; ?>" onclick="lipiarNew1(this.id);" class="btn btn-default botonAgg-1 col-md-2" style="border:1px solid #3498db; margin-top: 50px;">Volver a grabar</a>
+      <input type="text" name="<?php echo 'input'.$row1['idItem'] ?>" id='<?php echo 'span-preview'.$row1['idItem']; ?>' value="" style=" border-radius: 5px; height: 50px;">
+      
+
+      <a id="<?php echo 'limpiar'.$row1['idItem']; ?>" onclick="lipiarNew1(this.id);" class="btn btn-default botonAgg-1 col-md-3" style="border:1px solid #3498db; margin-top: 50px;">Volver a grabar o redactar</a>
+
+
 
 <?php }else{
 
  ?>
 
   <ul>
+    <input value="0" type="radio" name="<?php echo 'multiple'.$noPregunta; ?>"  style="" checked />
     <li >
+
+
       <input value="1" type="radio" name="<?php echo 'multiple'.$noPregunta; ?>" id="one" style="" />
       <label ><?php echo $row1['respuesta1']; ?></label>
       
@@ -422,10 +461,15 @@ input#fort:checked ~ label  {
  <input type="text" name="cantidadPreguntas" value="<?php echo $consulta; ?>" style="display: none;">
   <input type="text" name="tiempo" id="tiempo" value="" style="display: none;">
    <input type="text" name="intento" value="<?php echo $_GET['intento']; ?>" style="display: none;">
- <input style="margin-top: 20px; margin-bottom: 50px;" onclick="obtenerTiempoSubmit();"  value="Termine El Cuestionario" name="" class="btn btn-default botonAgg-1">
+   <input type="text" name="gradoB" style="display: none;" value="<?php if(empty(@$_GET['gradoB'])){  echo @$_SESSION['grado']; }else{   echo @$_GET['gradoB']; }  ?>">
+
+ <input style=" <?php echo $bntTerminarQuiz;?>  margin-top:40px; margin-bottom: 50px;  margin-left: 300px; " onclick="obtenerTiempoSubmit();"  value="Termine el cuestionario" name="" class="btn btn-default botonAgg-1">
 
   </form>
+<div class="card col-md-12" style="background-color: #3498db; border-radius: 5px; color:white; <?php echo $mostrarMensaje; ?>">
+ <h1 style="text-align: center;">Cuestionario aún no disponible, se habilitará en la semana que corresponda. :) </h1>
 
+</div>
 
 
 <script language="Javascript"  type="text/javascript">
@@ -491,7 +535,7 @@ input#fort:checked ~ label  {
             
       }else{
         var fluidez=[text];
-        $("#span-preview"+idPregunta).text(fluidez);
+        $("#span-preview"+idPregunta).val(fluidez);
        
         
       }
@@ -506,7 +550,7 @@ function finVoz(clicked_id){
 
    var ocultar= clicked_id;
    var mostrar= ocultar.substring(3,6); 
-     var texto = $("#span-preview"+mostrar).text();
+     var texto = $("#span-preview"+mostrar).val();
 
    $('#'+ocultar).css("display","none");
    $('#on'+mostrar).css("display","block"); 
@@ -522,7 +566,7 @@ function finVoz(clicked_id){
 function lipiarNew1(clicked_id){
   var cadenaText=clicked_id;
   var idLimpiar=cadenaText.substring(10,7);
-   $("#span-preview"+idLimpiar).text('');
+   $("#span-preview"+idLimpiar).val('');
    $("#input"+idLimpiar).val('');
 }
 
