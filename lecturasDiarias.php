@@ -2,7 +2,9 @@
 session_start();
 
 //validacion session
-
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
 if(!isset($_SESSION['idUsuario'])) {
 header('Location: ../index.html');
 }
@@ -27,9 +29,9 @@ require("../conection/conexion.php");
 
     $tituloGrad="1ero Primaria";
     if(empty($_SESSION['grado'])){
-      @$gradoBuscar=$_GET['gradoB'];
+      $gradoBuscar=$_GET['gradoB'];
     }else{
-      @$gradoBuscar=$_SESSION['grado'];
+      $gradoBuscar=$_SESSION['grado'];
     }
 
 //funciones para verificar la semanas
@@ -43,7 +45,6 @@ $dias = array("domingo","lunes","martes","miercoles","jueves","viernes","sabado"
 $noSemanaActual = date("W"); //produccion
 $semanaPrueba=$noSemanaActual-4;
 $diaSemanaSet=$dias[date("w")];
-
 
 
  
@@ -340,33 +341,31 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 <!--- SEMANAS 2DO ALGORITMO ---------------------->
 <?php 
 
-    $qnew=("SELECT DISTINCT semana,semanaMaestro from atomolector where grado=:grado and semana IS NOT NULL and semana!=0 and semanaMaestro is not null order by semana desc ");
+    $qnew=("SELECT DISTINCT semana,semanaMaestro from atomolector where grado=:grado and semana IS NOT NULL and semana!=0 and semanaMaestro is not null");
     $mostrarSemanas=$dbConn->prepare($qnew);
     $mostrarSemanas->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
     $mostrarSemanas->execute();
-    $contador=$mostrarSemanas->rowCount(); 
-   
-    
+
 
 ?>
 
-<div class="col-sm-9">
-          
+
   <div class="container">
+      <div class="row">
+     
 
-            <?php 
-
-            while(@$mostSemana=$mostrarSemanas->fetch(PDO::FETCH_ASSOC)){   
+            <?php while(@$mostSemana=$mostrarSemanas->fetch(PDO::FETCH_ASSOC)){   
               
-               
-                        
+              @$contador+=1;// semana 
+
+
+            
+
+              
 
               ?>
       <div class="col-sm-9">
-         <button class="btn btn-default botonAgg-1"  id="<?php echo 'env'.$contador; ?>" style="position: absolute; margin-left: 45%; margin-top: 25%; color:white; width:50px; height:50px; background-color: #3498db; border:1px solid #3498db; padding-left: -20px;" onclick="verMasLecturas(this.id);"> <h1 style="margin-top: -0px ; margin-left:-7px;" class="glyphicon glyphicon-chevron-right" width="70" heght="70"></h1></button>
-        <button class="btn btn-default botonAgg-1"  id="<?php echo 'reg'.$contador; ?>" style="position: absolute; margin-left: 45%; margin-top: 35%; color:white; width:50px; height:50px; background-color: #3498db; border:1px solid #3498db;" onclick="verMasLecturas(this.id);"> <h1 style=" margin-left:-7px;margin-top: -0px;" class="glyphicon glyphicon-chevron-left" width="70" heght="70"></h1></button>
-
-         
+          <button class="btn btn-default botonAgg-1"  id="<?php echo 'btn'.$contador; ?>" style="position: absolute; margin-left: 43%; margin-top: 25%; color:white; width:70px; height:70px; background-color: #3498db; border:1px solid #3498db;" onclick="verMasLecturas(this.id);"> <span class="glyphicon glyphicon-chevron-right" width="60" heght="60"></span></button>
           
           <div class="itemLect">
            <span class=""><?php echo $contador; ?></span>
@@ -374,7 +373,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
              <!-----  time line 2 ---->
 
           <div class="page-header" >
-            <h3>Semana <?php echo $contador.' - del- '.$mostSemana['semanaMaestro'];  ?>  </h3>
+            <h3>Semana <?php echo $contador.' -- '.$mostSemana['semanaMaestro'];  ?>  </h3>
           </div>
           <div style="overflow-y:auto; opacity: 0px;" id="<?php echo 'panel'.$contador; ?>">
           <ul class="timeline timeline-horizontal">
@@ -391,50 +390,10 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             while(@$rowDatosLecturas=$datosLecturas->fetch(PDO::FETCH_ASSOC)){              
                 @$h+=1;//dias de la semana 1=lunes, 2=martes,3=miercoles, 4=jueves, 5=viernes
 
-                if($gradoBuscar==13 or $gradoBuscar==14 or $gradoBuscar==15 or $gradoBuscar==1 or $gradoBuscar==2 or $gradoBuscar==3){
-                   $bloqueante='display:block;';
-                switch ($h) {
-                  case 1:
-                    $diaSemanaGet='lunes';
-                    $semanaVisata=$rowDatosLecturas['semanaMaestro'];
-                    break;
-                  case 2:
-                    $diaSemanaGet='martes';
-                    $bloqueante='display:none';
-                    $semanaVisata=$rowDatosLecturas['semanaMaestro'];
-                    break;
-                  case 3:
-                    $diaSemanaGet='miercoles';
-                     $bloqueante='display:none';
-                    $semanaVisata=$rowDatosLecturas['semanaMaestro'];
-                    break;
-                  case 4:
-                    $diaSemanaGet='jueves';
-                     $bloqueante='display:none';
-                    $semanaVisata=$rowDatosLecturas['semanaMaestro'];
-                    break;
-                  case 5:
-                    $diaSemanaGet='viernes';
-                    $bloqueante='display:none';
-                     $bloqueante='display:none';
-                    $semanaVisata=$rowDatosLecturas['semanaMaestro'];
-                    break;
-                  case 6:
-                    $diaSemanaGet='sabado';
-                    break;
-                  case 7:
-                    $diaSemanaGet='domingo';
-                    break;
-
-                  default:
-                    # code...
-                    break;
-                }
-
-                }
+                
 
 
-                if($gradoBuscar>=4 and $gradoBuscar<=11){
+                
 
                 //convertimos $h en dias de la semana
                 $bloqueante='display:block;';
@@ -442,10 +401,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                   case 1:
                     $diaSemanaGet='lunes';
                     $semanaVisata=$rowDatosLecturas['semanaMaestro'];
+                     $bloqueante='display:none';
+
                     break;
                   case 2:
                     $diaSemanaGet='martes';
-                    $bloqueante='display:none';
                     $semanaVisata=$rowDatosLecturas['semanaMaestro'];
                     break;
                   case 3:
@@ -472,7 +432,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                     # code...
                     break;
                 }
-                }
+                
 
 // Trozo de codigo que pone bloqueante el plan lector
 if($_SESSION['tipoUsuario']==1){
@@ -636,7 +596,7 @@ if($h==1){ echo "L"; $background="#2980b9";
 
                       
 
-            <?php  }  } $contador--; $h=0; ?>
+            <?php  }  } $h=0; ?>
                        
           </ul>
         </div>
@@ -749,19 +709,10 @@ function verMasLecturas(clicked_id){
   var idRuido= clicked_id; 
 
   var mostrar= idRuido.substring(3,6); 
-  //validacion regresar enviar
-  var moverseA= idRuido.substring(0,3); 
-  //alert(moverseA);
-  
-  if(moverseA=='env'){
+  //alert(mostrar);
     //var posicion_boton = $("#btn"+mostrar).offset().top;
-    var posicion_boton=708.375;
-   }
-
-   if(moverseA=='reg'){
-    var posicion_boton=10.375;
-
-   } 
+    var posicion_boton=1108.375;
+    
   $("#panel"+mostrar).animate({scrollLeft:posicion_boton+"px"});
 }
 
