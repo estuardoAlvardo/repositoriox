@@ -2,9 +2,7 @@
 session_start();
 
 //validacion session
-header("Cache-control: private");
-header("Cache-control: no-cache, must-revalidate");
-header("Pragma: no-cache");
+
 if(!isset($_SESSION['idUsuario'])) {
 header('Location: ../index.html');
 }
@@ -341,10 +339,11 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 <!--- SEMANAS 2DO ALGORITMO ---------------------->
 <?php 
 
-    $qnew=("SELECT DISTINCT semana,semanaMaestro from atomolector where grado=:grado and semana IS NOT NULL and semana!=0 and semanaMaestro is not null");
+    $qnew=("SELECT DISTINCT semana,semanaMaestro from atomolector where grado=:grado and semana IS NOT NULL and semana!=0 and semanaMaestro is not null order by semana desc");
     $mostrarSemanas=$dbConn->prepare($qnew);
     $mostrarSemanas->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
     $mostrarSemanas->execute();
+    $contador=$mostrarSemanas->rowCount(); 
 
 
 ?>
@@ -356,10 +355,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
             <?php while(@$mostSemana=$mostrarSemanas->fetch(PDO::FETCH_ASSOC)){   
               
-              @$contador+=1;// semana 
-
-
-            
+           
 
               
 
@@ -596,7 +592,7 @@ if($h==1){ echo "L"; $background="#2980b9";
 
                       
 
-            <?php  }  } $h=0; ?>
+           <?php  }  } @$contador--; $h=0; ?>
                        
           </ul>
         </div>
