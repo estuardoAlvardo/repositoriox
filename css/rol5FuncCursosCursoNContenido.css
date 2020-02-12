@@ -1,10 +1,20 @@
+
+hr.style13 {
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
+  margin-top:-5px;
+}
+
+
+
 .item{
   
-  height: 120px;
-  width:120px;
-  margin-top: 60px;
+  min-height: 120px;
+  min-width: 120px;
+  margin-top:0px;
   text-align: center;
-  margin-left: 2px; 
+  margin-left: 40px; 
   background-size: contain;
 }
 .item p{
@@ -27,14 +37,13 @@
 
 .sinfondo{
   background:-webkit-gradient(radial, -21 0, 0, 220 -257, 465, from(#3B98CF), to(#FF4E28));
-   background:-moz-gradient(radial, -21 0, 0, 220 -257, 465, from(#3B98CF), to(#FF4E28));
-    background:-o-gradient(radial, -21 0, 0, 220 -257, 465, from(#3B98CF), to(#FF4E28));
+  background:-moz-gradient(radial, -21 0, 0, 220 -257, 465, from(#3B98CF), to(#FF4E28));
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   
-  width: 110px;
-  height: 100px;
+  min-width: 110px;
+  min-height: 100px;
 
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -71,4 +80,9 @@
   margin-top:-30px;
   margin-left: -30px;
   position: absolute;
+}
+
+
+.iconoLeft{
+  margin-left: -80px;
 }
