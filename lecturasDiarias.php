@@ -41,7 +41,7 @@ setlocale(LC_ALL,"es_ES");
 $dias = array("domingo","lunes","martes","miercoles","jueves","viernes","sabado");
 //$diaNomuero=$array(1,2,3,4,5,6,7);
 $noSemanaActual = date("W"); //produccion
-$semanaPrueba=$noSemanaActual-2;
+$semanaPrueba=$noSemanaActual-4;
 $diaSemanaSet=$dias[date("w")];
 
 
