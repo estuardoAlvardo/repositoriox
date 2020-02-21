@@ -281,7 +281,8 @@ section {
          <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div>
         <h3 style="margin-top: 50px;">Mi Cofre de palabras</h4>
           
-        
+        <a href="<?php echo 'mostrarLect1.php?idLectura='.$_GET['idLectura'] ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Regresar a la lectura</a>
+
           <input type="text" name="nombre" id="nombre" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;">
 
 <div class="container-fluid">
@@ -302,7 +303,6 @@ section {
               </div>
               <input style="display:none;" type="text" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
               <input type="text" style="display: none;" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
-              <input type="text" style="display: none;" name="gradoB" value="<?php echo $_SESSION['gradoB']; ?>">
             
           </div>
           <div class="wrimagecard-topimage_title" style="margin-left: 40%;">
