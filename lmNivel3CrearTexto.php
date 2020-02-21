@@ -462,7 +462,6 @@ position: relative;
          <div class="col-md-12" style="margin-top: 30px;">
         
               <h3 class="text-center">Escritura Madura</h3><br> 
-              <a href="<?php echo 'mostrarLect1.php?idLectura='.$_GET['idLectura'] ?>&gradoB=7" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Regresar a la lectura</a>
                     
          </div>
 
@@ -528,8 +527,7 @@ position: relative;
                           </div>
                           <input style="display: none;" type="text" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input style="display: none;"  type="text" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>"><br>
-                          <input style="display: none;"  type="text" name="gradoB" value="<?php echo $_GET['gradoB']; ?>"><br>
-
+                           <input type="text" style="display: none;" value="<?php echo $_GET['gradoB'];?>" name="gradoB">
 
                           
                           <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px;"   type="submit" value="Enviar Datos">
@@ -610,6 +608,7 @@ position: relative;
 
                           <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input  style="display:none;" type="type" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
+                           <input type="text" style="display: none;" value="<?php echo $_GET['gradoB'];?>" name="gradoB">
                       </form>
                           
                       
@@ -630,7 +629,6 @@ position: relative;
                           <input style="display:none;" type="type" name="idTexto" value="<?php echo $_SESSION['idTexto']; ?>">
                            <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input  style="display:none;" type="type" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
-                          <input  style="display:none;" type="type" name="gradoB" value="<?php echo $_GET['gradoB']; ?>">
 
                             <img src="../leido1.png" style="width:60px; height: 60px; position: absolute; margin-left:-40px; margin-top: 70px;">
 
@@ -740,10 +738,8 @@ position: relative;
                           <input id="idLectura_in" type="type" name="idLectura_save" value="" style="display: none;">
                           <input id="idUsuario_in" type="type" name="idUsuario_save" value="" style="display: none;">
 
-                          <input id="idUsuario_in" type="type" name="gradoB" value="<?php echo $_GET['gradoB']; ?>" style="display: none;">
-
-
-                          <input id="botonPublicar" class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px; display: none; "   type="submit"  value="Guardar Modificación">   
+                          <input id="botonPublicar" class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px; display: none; "   type="submit"  value="Guardar Modificación">  
+                           <input type="text" style="display: none;" value="<?php echo $_GET['gradoB'];?>" name="gradoB"> 
                           
                         </form>                         
 
@@ -914,6 +910,7 @@ input:checked + .slider:before {
                         <input type="text" style="display: none;" value="<?php echo $_GET['idLectura']; ?>" name="idLectura">
                         <input type="text" style="display: none;" value="<?php echo  strtoupper($_SESSION['nombre'])." ".strtoupper($_SESSION['apellido']); ?>" name="autor">
                         <input type="text" style="display: none;" value="<?php echo $_SESSION['tituloFin'];?>" name="titulo">
+                         <input type="text" style="display: none;" value="<?php echo $_GET['gradoB'];?>" name="gradoB">
                         
                       <?php if($publicoText==0){ ?>  
 
@@ -972,7 +969,8 @@ input:checked + .slider:before {
     var parrafoFinal='<p id="parr'+idBuscarAnt+'">'+parrafoCapturado+'</p>';
 
     $("#agregarParrafos").append(campo);
-    //$("#agregarPt").append(parrafoFinal);
+
+    $("#agregarPt").append(parrafoFinal);
     
   }
 
@@ -985,7 +983,9 @@ input:checked + .slider:before {
     var nextinput = 0;
     //alert('parrafo: '+idBuscarNew + ' parrafo: '+parrafoCapturado1);
     nextinput++;
-    var campo1 = '<li id="newP'+idBuscarNew+'"><input type="text" size="20" id="campo' + idBuscarNew + '"&nbsp; name="campo_' + idBuscarNew + '"&nbsp; value="'+parrafoCapturado1+'" /></li>';
+    var campo1 = '<li id="newP'+idBuscarNew+'" ><input  type="text" size="20" id="campo' + idBuscarNew + '"&nbsp; name="campo_' + idBuscarNew + '"&nbsp; value="'+parrafoCapturado1+'" /></li>';
+
+
     var parrafoFinal='<p id="parrN'+idBuscarNew+'">'+parrafoCapturado1+'</p>';
     $("#agregarParrafos").append(campo1);
     // $("#agregarPt").append(parrafoFinal);
