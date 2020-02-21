@@ -527,8 +527,9 @@ position: relative;
                               <label class="label3" for="name3" style="color:black; text-align: left; background-color:#ffffff;">Cantidad Párrafos</label>
                           </div>
                           <input style="display: none;" type="text" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
-                          <input style="display: none;" type="text" name="gradoB" value="<?php echo $_GET['gradoB']; ?>">
                           <input style="display: none;"  type="text" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>"><br>
+                          <input style="display: none;"  type="text" name="gradoB" value="<?php echo $_GET['gradoB']; ?>"><br>
+
 
                           
                           <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px;"   type="submit" value="Enviar Datos">
@@ -629,6 +630,7 @@ position: relative;
                           <input style="display:none;" type="type" name="idTexto" value="<?php echo $_SESSION['idTexto']; ?>">
                            <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input  style="display:none;" type="type" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
+                          <input  style="display:none;" type="type" name="gradoB" value="<?php echo $_GET['gradoB']; ?>">
 
                             <img src="../leido1.png" style="width:60px; height: 60px; position: absolute; margin-left:-40px; margin-top: 70px;">
 
@@ -737,6 +739,9 @@ position: relative;
                           <input id="idTexto_in" type="type" name="idTexto_save" value="" style="display: none;">
                           <input id="idLectura_in" type="type" name="idLectura_save" value="" style="display: none;">
                           <input id="idUsuario_in" type="type" name="idUsuario_save" value="" style="display: none;">
+
+                          <input id="idUsuario_in" type="type" name="gradoB" value="<?php echo $_GET['gradoB']; ?>" style="display: none;">
+
 
                           <input id="botonPublicar" class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px; display: none; "   type="submit"  value="Guardar Modificación">   
                           
