@@ -606,6 +606,7 @@ position: relative;
                               <label class="label7" for="name7" style="color:black; text-align: left; background-color:#ffffff;">Párrafo <?php echo $paso2; ?></label>
                           </div>
                         <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px;"   type="submit" value="Enviar Párrafo">
+                          <input style="display: none;" type="text" name="gradoB" value="<?php echo $_GET['gradoB']; ?>">
 
                           <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input  style="display:none;" type="type" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
@@ -737,6 +738,7 @@ position: relative;
                           <input id="idTexto_in" type="type" name="idTexto_save" value="" style="display: none;">
                           <input id="idLectura_in" type="type" name="idLectura_save" value="" style="display: none;">
                           <input id="idUsuario_in" type="type" name="idUsuario_save" value="" style="display: none;">
+                            <input style="display: none;" type="text" name="gradoB" value="<?php echo $_GET['gradoB']; ?>">
 
                           <input id="botonPublicar" class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px; display: none; "   type="submit"  value="Guardar Modificación">   
                           
