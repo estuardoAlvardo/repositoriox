@@ -56,7 +56,7 @@ require("../../conection/conexion.php");
     margin-left: -15%;
     margin-top: 34%;
 
-    margin-bottom:900px;
+    margin-bottom:200px;
   }
 
   .cajaDescripcion{
@@ -377,7 +377,7 @@ require("../../conection/conexion.php");
 <a href="miCofre.php?idLectura=<?php echo $_GET['idLectura']; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn btn-default botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;">Mi cofre</a>
 
   
-  <a href="lmNivel3CrearTexto.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura n3</a>
+  <a href="lmNivel3CrearTexto.php?idLectura=<?php echo $_GET['idLectura']; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura n3</a>
 
 <?php } ?>
 </div><br><br>
