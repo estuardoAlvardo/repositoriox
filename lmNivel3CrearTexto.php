@@ -909,6 +909,7 @@ input:checked + .slider:before {
                         <input type="text" style="display: none;" value="<?php echo $_SESSION['tematica']; ?>" name="tematica">
                         <input type="text" style="display: none;" value="<?php echo $_SESSION['idUsuario']; ?>" name="idUsuario">
                         <input type="text" style="display: none;" value="<?php echo $_GET['idLectura']; ?>" name="idLectura">
+                         <input type="text" style="display: none;" value="<?php echo $_GET['gradoB']; ?>" name="gradoB">
                         <input type="text" style="display: none;" value="<?php echo  strtoupper($_SESSION['nombre'])." ".strtoupper($_SESSION['apellido']); ?>" name="autor">
                         <input type="text" style="display: none;" value="<?php echo $_SESSION['tituloFin'];?>" name="titulo">
                         
